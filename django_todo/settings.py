@@ -20,15 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i0)*#x1r31ar_wie4g*aq012n*!q^4z@i#dpo^n+#1ar+i+f-6'
+
+SECRET_KEY = os.environ.get('SECRET_KEY') # noqa
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'pm90-django-to-do-app.herokuapp.com'
-]
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
@@ -77,15 +76,15 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-#DATABASES = {
-    #'default': {
+# DATABASES = {
+    # 'default': {
      #   'ENGINE': 'django.db.backends.sqlite3',
-      #  'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
-#}
+       #  'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+# } #noqa
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://rcpjewdgfbclsz:654fb8baef4bcfa38d42a63dc6eeb6cfab2d7feaccd9ad7460a9a4f8ac37fcd2@ec2-34-232-147-86.compute-1.amazonaws.com:5432/d7kot2t4ljv233')
+    'default': dj_database_url.parse('postgres://rcpjewdgfbclsz:654fb8baef4bcfa38d42a63dc6eeb6cfab2d7feaccd9ad7460a9a4f8ac37fcd2@ec2-34-232-147-86.compute-1.amazonaws.com:5432/d7kot2t4ljv233') # noqa
 }
 
 # Password validation
